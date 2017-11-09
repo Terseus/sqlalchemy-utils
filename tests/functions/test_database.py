@@ -101,7 +101,6 @@ class TestDatabasePostgresWithQuotedName(DatabaseTest):
         create_database(dsn, template='my-template')
 
 
-@pytest.mark.usefixtures('postgresql_dsn')
 class TestDatabasePostgresCreateDatabaseCloseConnection(DatabaseTest):
     def test_create_database_twice(self, postgresql_db_user):
         dsn_list = [
@@ -112,10 +111,10 @@ class TestDatabasePostgresCreateDatabaseCloseConnection(DatabaseTest):
                 postgresql_db_user
             ),
         ]
-        for dsn in dsn_list:
-            assert not database_exists(dsn)
-            create_database(dsn)
-            assert database_exists(dsn)
-        for dsn in dsn_list:
-            drop_database(dsn)
-            assert not database_exists(dsn)
+        for dsn_item in dsn_list:
+            assert not database_exists(dsn_item)
+            create_database(dsn_item)
+            assert database_exists(dsn_item)
+        for dsn_item in dsn_list:
+            drop_database(dsn_item)
+            assert not database_exists(dsn_item)
