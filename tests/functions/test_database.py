@@ -113,7 +113,7 @@ class TestDatabasePostgresCreateDatabaseCloseConnection(object):
         ]
         for dsn_item in dsn_list:
             assert not database_exists(dsn_item)
-            create_database(dsn_item)
+            create_database(dsn_item, template="template1")
             assert database_exists(dsn_item)
         for dsn_item in dsn_list:
             drop_database(dsn_item)
