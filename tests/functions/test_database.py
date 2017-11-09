@@ -101,7 +101,7 @@ class TestDatabasePostgresWithQuotedName(DatabaseTest):
         create_database(dsn, template='my-template')
 
 
-class TestDatabasePostgresCreateDatabaseCloseConnection(DatabaseTest):
+class TestDatabasePostgresCreateDatabaseCloseConnection(object):
     def test_create_database_twice(self, postgresql_db_user):
         dsn_list = [
             'postgres://{0}@localhost/db_test_sqlalchemy-util-a'.format(
